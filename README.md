@@ -25,6 +25,8 @@ Playlist: https://www.youtube.com/watch?v=HCjE1fFlgng&list=PLyD1XCIRA3gRU_E_N863
 
 #6: Practical Use Cases - LangChain & Vertex AI PaLM - Google Cloud - DIY#6: https://www.youtube.com/watch?v=VCQ_SPpXfLg
 
+#7: Practical Use Cases - Q&A on Table SQL LangChain & BigQuery - Google Cloud - DIY#7: https://youtu.be/jLyXkBeNRAo
+
 
 
 Repository Instructions:
