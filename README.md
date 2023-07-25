@@ -21,9 +21,12 @@ Playlist: https://www.youtube.com/watch?v=HCjE1fFlgng&list=PLyD1XCIRA3gRU_E_N863
 
 #4: GCP Gen AI Use Case - Simple Mortgage Rate Calculator in JSON Format- Google Cloud - DIY#4: https://www.youtube.com/watch?v=VCQ_SPpXfLg
 
+#5: LangChain & Vertex AI PaLM Getting Started - Google Cloud - DIY#5: https://www.youtube.com/watch?v=FtLWDjNMPgs 
+
+#6: Practical Use Cases - LangChain & Vertex AI PaLM - Google Cloud - DIY#6: https://www.youtube.com/watch?v=VCQ_SPpXfLg
 
 
 
 Repository Instructions:
-------------------------
+-----------------
 To get started with this repository, you will need to have a Google Cloud Platform (GCP) account and be familiar with the Jupyter notebook environment. Once you have these prerequisites, you can follow the instructions in the README file to install the necessary dependencies and run the notebooks.
