@@ -27,6 +27,11 @@ Playlist: https://www.youtube.com/watch?v=HCjE1fFlgng&list=PLyD1XCIRA3gRU_E_N863
 
 #7: Practical Use Cases - Q&A on Table SQL LangChain & BigQuery - Google Cloud - DIY#7: https://youtu.be/jLyXkBeNRAo
 
+#8: GCP Gen AI - PaLM API Codey - Google Cloud LLM - DIY#8 -  https://youtu.be/JmWASbSJqGY
+
+#9: YouTube Video summarization - COMING SOON
+
+
 
 
 Repository Instructions:
