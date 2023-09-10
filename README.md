@@ -29,7 +29,7 @@ Playlist: https://www.youtube.com/watch?v=HCjE1fFlgng&list=PLyD1XCIRA3gRU_E_N863
 
 #8: GCP Gen AI - PaLM API Codey - Google Cloud LLM - DIY#8 -  https://youtu.be/JmWASbSJqGY
 
-#9: YouTube Video summarization - COMING SOON
+#9: YouTube Video summarization - https://www.youtube.com/watch?v=eyDIkYAFFrg
 
 
 
