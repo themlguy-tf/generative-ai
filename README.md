@@ -32,8 +32,18 @@ Playlist: https://www.youtube.com/watch?v=HCjE1fFlgng&list=PLyD1XCIRA3gRU_E_N863
 #9: YouTube Video summarization - https://www.youtube.com/watch?v=eyDIkYAFFrg
 
 
-
-
 Repository Instructions:
 -----------------
 To get started with this repository, you will need to have a Google Cloud Platform (GCP) account and be familiar with the Jupyter notebook environment. Once you have these prerequisites, you can follow the instructions in the README file to install the necessary dependencies and run the notebooks.
+google-cloud==0.34.0
+google-api-core==2.12.0
+google-auth==2.23.3
+google-cloud-aiplatform==1.35.0
+google-cloud-bigquery==3.12.0
+google-cloud-core==2.3.3
+google-cloud-logging==3.6.0
+google-cloud-language==2.11.1
+google-cloud-documentai==2.20.1
+google-cloud-resource-manager==1.10.4
+google-cloud-storage==2.12.0
+google-cloud-vision==3.4.5
