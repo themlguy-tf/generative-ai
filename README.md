@@ -8,6 +8,12 @@ Repository Description:
 -----------------------
 This repository contains Jupyter notebooks and other resources that demonstrate how to use Generative AI (Gen AI) and large language models (LLMs) on Vertex AI, the end-to-end machine learning platform on Google Cloud.
 
+Agent Builder Explanatory Videos:
+-----------------------------------
+#1: Getting Started with Agent Builder: https://www.youtube.com/watch?v=3TkSFam5Bm0
+#2: Agent Builder Advanced: BigQuery Structured Data Text2SQL: https://www.youtube.com/watch?v=Hv-QXKcWFSA
+
+
 
 Video Links:
 ------------
