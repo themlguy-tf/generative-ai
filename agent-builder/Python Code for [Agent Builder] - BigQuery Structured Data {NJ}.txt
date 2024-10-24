@@ -1,0 +1,120 @@
+--------------------------------------------------------------------------------------
+---------------------------list_tables_new-----------------------------------------------
+--------------------------------------------------------------------------------------
+
+from flask import Flask, request, make_response, jsonify
+import json
+from google.cloud import bigquery
+
+app = Flask(__name__)
+
+@app.route('/list_tables_new', methods=['GET'])
+def list_tables_new(request):
+    dataset_id = request.args.get('dataset_id')
+    if not dataset_id:
+        return make_response(json.dumps({"error": "Missing dataset_id parameter"}), 400)
+    client = bigquery.Client()
+    dataset_ref = client.dataset(dataset_id)
+    api_response = client.list_tables(dataset_ref)
+    table_ids = str([table.table_id for table in api_response])
+    
+    output = {
+        "tables": table_ids
+    }
+    return jsonify(output)
+
+
+
+--------------------------------------------------------------------------------------
+---------------------------get_table_new-----------------------------------------------
+--------------------------------------------------------------------------------------
+from flask import Flask, request, make_response, jsonify
+import json
+from google.cloud import bigquery
+
+app = Flask(__name__)
+
+def schemafield_to_dict(schema):
+    """Converts a list of SchemaField objects to a list of dicts."""
+    return [
+        {
+            'name': field.name,
+            'field_type': field.field_type,
+            'mode': field.mode,
+            'description': field.description,
+            'fields': schemafield_to_dict(field.fields) if field.fields else []
+        }
+        for field in schema
+    ]
+
+@app.route('/get_table_new', methods=['GET'])
+def get_table_new(request):
+    # Parse JSON payload from the request body
+    print(f'Request: {request}')
+    try:
+        table_id = request.args.get('table_id')
+    except Exception as e:
+        print(f'Error {e}')
+        return make_response(jsonify({"error": "Invalid JSON payload"}), 400)
+
+    # Validate required parameters
+    if not table_id:
+        return make_response(jsonify({"error": "Missing table_id parameter"}), 400)
+    
+    print(f'Table id: {table_id}')
+    
+    # Initialize BigQuery client
+    client = bigquery.Client()
+
+    # Attempt to retrieve the table reference
+    try:
+        table_ref = client.get_table(table_id)
+    except Exception as e:
+        return make_response(jsonify({"error": str(e)}), 404)
+
+    api_response = {
+        "description": table_ref.description,
+        "schema": schemafield_to_dict(table_ref.schema),
+        "num_rows": table_ref.num_rows,
+    }
+    
+    return jsonify(api_response)
+
+
+
+--------------------------------------------------------------------------------------
+---------------------------sql_query_new-----------------------------------------------
+--------------------------------------------------------------------------------------
+
+from flask import Flask, request, make_response, jsonify
+import json
+from google.cloud import bigquery
+
+app = Flask(__name__)
+
+@app.route('/sql_query_new', methods=['GET', 'POST'])
+def sql_query_new(request):
+    data = request.get_json()
+    print(data)
+    if not data or 'query' not in data:
+        return jsonify({"error": "Missing query parameter"}), 400
+    query = data['query']
+
+    client = bigquery.Client()
+    job_config = bigquery.QueryJobConfig(
+        maximum_bytes_billed=100000000
+    ) 
+    try:
+        cleaned_query = (
+            query
+            .replace("\\n", " ")
+            .replace("\n", "")
+            .replace("\\", "")
+        )
+        query_job = client.query(cleaned_query, job_config=job_config)
+        api_response = query_job.result()
+        api_response = str([dict(row) for row in api_response])
+        api_response = api_response.replace("\\", "").replace("\n", "")
+        return jsonify(api_response)
+    except Exception as e:
+        return jsonify(str(e))
