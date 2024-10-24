@@ -1,0 +1,24 @@
+Code for main.py:
+-----------------------------------------------------------------------------------------------------------------------
+from flask import Flask, request, make_response, jsonify
+import requests
+import os
+app = Flask(__name__)
+
+@app.route('/get_current_weather', methods=['GET'])
+def get_current_weather(request):
+    location = request.args.get('location')
+    api_key = os.getenv('WEATHER_API_KEY')
+    
+    try:
+        response = requests.get(f"https://api.weatherbit.io/v2.0/current?city={location}&key={api_key}&include=minutely")
+
+        # Convert the response to a JSON object
+        response = response.json()
+
+        # Construct a string with the current weather description and temperature for the given location
+        api_response = "The current weather in " + location + " is " + response["data"][0]["weather"]["description"] + " with a temperature of " + str(response["data"][0]["temp"]) + "°C."
+
+        return jsonify(api_response)
+    except Exception as e:
+        print(f'Error {e}')
