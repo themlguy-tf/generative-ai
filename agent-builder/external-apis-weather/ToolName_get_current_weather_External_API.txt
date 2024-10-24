@@ -1,0 +1,45 @@
+openapi: 3.0.2
+info:
+  title: Weather API
+  description: API to get the current weather based on location using Weatherbit.
+  version: 1.0.0
+servers:
+  - url: 'https://us-central1-genaiinprogress.cloudfunctions.net'
+    description: Cloud Function Deployment
+paths:
+  /get_current_weather:
+    get:
+      summary: Get Current Weather
+      description: Retrieve the current weather for a specified location.
+      parameters:
+        - in: query
+          name: location
+          schema:
+            type: string
+          required: true
+          description: The name of the city to get the weather for.
+      responses:
+        '200':
+          description: Successful response with weather information
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  weather:
+                    type: string
+                    example: >-
+                      The current weather in London is Clear sky with a
+                      temperature of 13.3°C.
+        '400':
+          description: Bad Request (missing or invalid location parameter)
+        '500':
+          description: 'Internal Server Error (e.g., API issues or connectivity failure)'
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: WEATHER_API_KEY
+security:
+  - ApiKeyAuth: []
